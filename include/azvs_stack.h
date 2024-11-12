@@ -3,10 +3,11 @@
 
 #include <stddef.h>
 
+// 栈
 typedef struct {
   void **data;  // 存储栈元素的数组
   size_t size;  // 当前栈的大小
-  size_t total; // 栈总容量
+  size_t total; // 栈的预期总容量
 } AStack;
 
 /**
