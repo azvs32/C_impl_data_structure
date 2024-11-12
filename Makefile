@@ -5,7 +5,7 @@
 
 CC = gcc
 CFLAGS = -Iinclude
-SRC = main.c src/azvs_queue.c
+SRC = main.c src/azvs_queue.c src/azvs_stack.c src/azvs_list.c
 OBJ = main
 
 all: $(OBJ)
