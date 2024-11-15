@@ -20,10 +20,9 @@ typedef struct {
 
 /**
  * 链表初始化操作
- * @param list 指定链表地址
- * @return 成功创建返回 0
+ * @return 成功创建返回地址，失败返回NULL
  */
-int a_list_init(AList *list);
+AList *a_list_init();
 
 /**
  * 清空指定链表

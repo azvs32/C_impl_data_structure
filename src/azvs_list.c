@@ -1,18 +1,17 @@
 #include "../include/azvs_list.h"
+#include "../include/azvs_base.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-int a_list_init(AList *list) {
+AList *a_list_init() {
+  AList *list = NEW(AList);
   if (list == NULL) {
-    list = (AList *)malloc(sizeof(AList));
-    if (list == NULL) {
-      return -1;
-    }
+    return NULL;
   }
   list->head = NULL;
   list->rear = NULL;
   list->size = 0;
-  return 0;
+  return list;
 }
 
 void a_list_free(AList *list) {
@@ -22,17 +21,17 @@ void a_list_free(AList *list) {
   while (list->head != list->rear) {
     AListNode *t = list->head;
     list->head = list->head->next;
-    free(t);
+    DELETE(t);
   }
-  free(list->head);
-  free(list);
+  DELETE(list->head);
+  DELETE(list);
 }
 
 int a_list_insert_head(AList *list, void *data) {
   if (list == NULL) {
     return -1;
   }
-  AListNode *new = (AListNode *)malloc(sizeof(AListNode));
+  AListNode *new = NEW(AListNode);
   if (new == NULL) {
     return -1;
   }
@@ -56,7 +55,7 @@ int a_list_insert_rear(AList *list, void *data) {
   if (list == NULL) {
     return -1;
   }
-  AListNode *new = (AListNode *)malloc(sizeof(AListNode));
+  AListNode *new = NEW(AListNode);
   if (new == NULL) {
     return -1;
   }
