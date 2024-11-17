@@ -4,16 +4,18 @@
 #include <stddef.h>
 
 // 双向链表结构体
-typedef struct azvs_list_node {
-  void *data;                  // 元素数据
-  struct azvs_list_node *pre;  // 指向上一个节点
-  struct azvs_list_node *next; // 指向下一个节点
+typedef struct azvs_list_node
+{
+    void *data;                  // 元素数据
+    struct azvs_list_node *pre;  // 指向上一个节点
+    struct azvs_list_node *next; // 指向下一个节点
 } AListNode;
 
-typedef struct {
-  AListNode *head; // 链表的头节点
-  AListNode *rear; // 链表的尾节点
-  size_t size;     // 链表节点中元素的数量
+typedef struct
+{
+    AListNode *head; // 链表的头节点
+    AListNode *rear; // 链表的尾节点
+    size_t size;     // 链表节点中元素的数量
 } AList;
 
 /////////////////////////
@@ -59,11 +61,11 @@ int a_list_insert_rear(AList *list, void *data);
 // int a_list_remove_rear(AList *list, void *data);
 
 /**
-* 删除链表中所有满足条件的元素
-* @param list 指定链表地址
-* @param operation 自定义查找规则：找到满足条件的元素需返回 0
-* @return 返回成功删除的个数
-*/
+ * 删除链表中所有满足条件的元素
+ * @param list 指定链表地址
+ * @param operation 自定义查找规则：找到满足条件的元素需返回 0
+ * @return 返回成功删除的个数
+ */
 int a_list_remove(AList *list, int (*operation)(void *, void *));
 
 /**

@@ -9,7 +9,8 @@
 
 // 定义了日志有哪些级别，危险级别依次递增。
 // 若修改了该枚举，请同步修改 get_log_level 函数。
-typedef enum {
+typedef enum
+{
     LOG_LEVEL_DEBUG,
     LOG_LEVEL_INFO,
     LOG_LEVEL_WARN,
