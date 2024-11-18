@@ -79,6 +79,12 @@ build CMakeFiles/C_impl_data_structure.dir/impl/azvs_stack.c.o: C_COMPILER__C_im
   OBJECT_DIR = CMakeFiles/C_impl_data_structure.dir
   OBJECT_FILE_DIR = CMakeFiles/C_impl_data_structure.dir/impl
 
+build CMakeFiles/C_impl_data_structure.dir/impl/array/azvs_array.c.o: C_COMPILER__C_impl_data_structure_unscanned_Debug /storage/project/c/C_impl_data_structure/impl/array/azvs_array.c || cmake_object_order_depends_target_C_impl_data_structure
+  DEP_FILE = CMakeFiles/C_impl_data_structure.dir/impl/array/azvs_array.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/C_impl_data_structure.dir
+  OBJECT_FILE_DIR = CMakeFiles/C_impl_data_structure.dir/impl/array
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target C_impl_data_structure
@@ -87,7 +93,7 @@ build CMakeFiles/C_impl_data_structure.dir/impl/azvs_stack.c.o: C_COMPILER__C_im
 #############################################
 # Link the executable C_impl_data_structure
 
-build C_impl_data_structure: C_EXECUTABLE_LINKER__C_impl_data_structure_Debug CMakeFiles/C_impl_data_structure.dir/main.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_base.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_list.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_queue.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_stack.c.o
+build C_impl_data_structure: C_EXECUTABLE_LINKER__C_impl_data_structure_Debug CMakeFiles/C_impl_data_structure.dir/main.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_base.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_list.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_queue.c.o CMakeFiles/C_impl_data_structure.dir/impl/azvs_stack.c.o CMakeFiles/C_impl_data_structure.dir/impl/array/azvs_array.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/C_impl_data_structure.dir
   POST_BUILD = :

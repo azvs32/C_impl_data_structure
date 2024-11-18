@@ -1,4 +1,5 @@
 .idea
+cmake-build-debug
 main
 main.c
 key
