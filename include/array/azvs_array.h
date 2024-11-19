@@ -21,6 +21,16 @@ typedef struct azvs_array {
      */
     size_t size;
     /**
+     * @brief 对应的标记
+     * 当flag[i]=='Y'时，表示data[i]中存放了数据
+     * 当flag[i]=='N'时，表示data[i]没有存放数据
+     */
+    char *flag;
+    /**
+     * @brief 线性表中已存入数据的总个数
+     */
+    size_t count;
+    /**
      * @brief 线性表最大容量
      */
     size_t total;
@@ -30,10 +40,14 @@ typedef struct azvs_array {
  * @brief 初始化线性表
  * @param size 单个元素占用的大小 sizeof(type)
  * @param total 线性表存储元素的总数量
- * @return
+ * @return 线性表的首地址
  */
 APArray a_array_init(size_t size, size_t total);
 
+/**
+* @brief 释放线性表，释放成功后，指针指向NULL
+* @param array 需要操作的线性表
+*/
 void a_array_free(APArray * array);
 
 /**
@@ -42,7 +56,25 @@ void a_array_free(APArray * array);
  * @param data 需要插入的数据
  * @param index 指定下标
  */
-void a_array_insert(APArray array, const void * data, size_t index);
+void a_array_set(APArray array, const void * data, size_t index);
+
+/**
+* @brief 返回线性表中指定下标元素的地址
+* @param array 需要操作的线性表
+* @param index 指定下标
+* @return 指定下标元素地址，若此处没有元素，将返回 NULL
+*/
+void *a_array_get_p(APArray array, size_t index);
+// 使用 a_array_get_p 函数返回的线性表中元素的地址，如果在外部修改了，会影响到线性表中的元素。
+// 使用 a_array_get   函数会将线性表中的元素复制一份返回，外部元素修改不会影响到线性表中的元素。
+#define a_array_get(array, index, type) (*((type *)a_array_get_p(array, index)))
+
+/**
+* @brief 删除线性表中指定下标的元素
+* @param array 需要操作的线性表
+* @param index 指定下标
+*/
+void a_array_del(APArray array, size_t index);
 
 /**
  * @brief 输出线性表的每个元素
