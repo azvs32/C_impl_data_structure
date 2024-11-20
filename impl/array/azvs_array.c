@@ -4,6 +4,7 @@
 
 #include "../../include/array/azvs_array.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -16,23 +17,25 @@ APArray a_array_init(const size_t size, const size_t total) {
     array->count = 0;
     array->data = NEW_ARRAY(char, size*total);
     array->flag = NEW_ARRAY(char, total);
-    for (int i = 0; i < total; i++) {
-        array->flag[i] = 'N';
-    }
+    memset(array->flag, 'N', total);
     return array;
 }
 
-void a_array_free(APArray * array) {
-    if (*array == NULL) {
+APArray a_array_init2_(size_t total, size_t size, char * type) {
+    APArray array = a_array_init(size, total);
+    array->type = type;
+    return array;
+}
+
+void a_array_free_p(APArray * array) {
+    if (array==NULL || *array==NULL) {
         LOG_MSG(LOG_LEVEL_INFO, "尝试释放空线性表");
         return;
     }
-    if (*array!=NULL) {
-        DELETE((*array)->flag);
-        DELETE((*array)->data);
-        DELETE(*array);
-        *array = NULL;
-    }
+    DELETE((*array)->flag);
+    DELETE((*array)->data);
+    DELETE(*array);
+    *array = NULL;
 }
 
 void a_array_set(APArray array, const void * data, const size_t index) {
@@ -84,6 +87,10 @@ void a_array_del(APArray array, const size_t index) {
     memset(array->data+index*array->size, 0, array->size);
     array->flag[index] = 'N';
     LOG_MSG(LOG_LEVEL_INFO, "线性表[%d]数据已删除", index);
+}
+
+void a_array_sqrt(APArray array, int (*operate)(const void *, const void *)) {
+    qsort(array->data, array->total, array->size, operate); // C 语言提供的排序函数
 }
 
 void a_array_print(APArray array, void (*operate)(void *), const char * end) {

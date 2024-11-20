@@ -27,6 +27,10 @@ typedef struct azvs_array {
      */
     char *flag;
     /**
+     * @brief 记录线性表中的类型
+     */
+    char * type;
+    /**
      * @brief 线性表中已存入数据的总个数
      */
     size_t count;
@@ -44,11 +48,15 @@ typedef struct azvs_array {
  */
 APArray a_array_init(size_t size, size_t total);
 
+APArray a_array_init2_(size_t total, size_t size, char * type);
+#define a_array_init2(total, type) a_array_init2_(total, sizeof(type), #type)
+
 /**
 * @brief 释放线性表，释放成功后，指针指向NULL
 * @param array 需要操作的线性表
 */
-void a_array_free(APArray * array);
+void a_array_free_p(APArray * array);
+#define a_array_free(array) a_array_free_p(&(array))
 
 /**
  * @brief 将数据存入指定下标，若下标内原本有元素，将会被覆盖
@@ -75,6 +83,13 @@ void *a_array_get_p(APArray array, size_t index);
 * @param index 指定下标
 */
 void a_array_del(APArray array, size_t index);
+
+/**
+* @brief 线性表排序，使用回调函数定义排序规则
+* @param array 需要操作的线性表
+* @param operate 回调函数，指定排序规则
+*/
+void a_array_sqrt(APArray array, int (*operate)(const void *, const void *));
 
 /**
  * @brief 输出线性表的每个元素
