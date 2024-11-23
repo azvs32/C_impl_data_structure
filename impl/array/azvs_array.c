@@ -103,3 +103,7 @@ void a_array_print(APArray array, void (*operate)(void *), const char * end) {
     }
     if (end) printf("%s", end);
 }
+
+char*a_array_get_type(APArray array) {
+    return array->type;
+}

@@ -25,8 +25,8 @@ char *get_log_level(LogLevel level)
 
 void log_message(LogLevel level, const char *file, const char *function,int line, const char *format, ...)
 {
-    // 判断日志级别操作，使用宏定义封装，在编译时优化。
-    // if (level < current_log_level) return;
+    // 判断日志级别操作。使用宏定义封装，在编译时优化。
+    if (level < current_log_level) return;
 
     printf("[%s][%s][%s][%d] -> ", get_log_level(level), file, function, line);
 

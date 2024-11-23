@@ -76,6 +76,7 @@ void *a_array_get_p(APArray array, size_t index);
 // 使用 a_array_get_p 函数返回的线性表中元素的地址，如果在外部修改了，会影响到线性表中的元素。
 // 使用 a_array_get   函数会将线性表中的元素复制一份返回，外部元素修改不会影响到线性表中的元素。
 #define a_array_get(array, index, type) (*((type *)a_array_get_p(array, index)))
+// #define a_array_get2(array, index) a_array_get(array, index, a_array_get_type(array))
 
 /**
 * @brief 删除线性表中指定下标的元素
@@ -98,5 +99,7 @@ void a_array_sqrt(APArray array, int (*operate)(const void *, const void *));
  * @param end 结束输出，可指定为 NULL
  */
 void a_array_print(APArray array, void (*operate)(void *), const char * end);
+
+char*a_array_get_type(APArray array);
 
 #endif //AZVS_ARRAY_H
