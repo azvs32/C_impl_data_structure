@@ -1,3 +1,0 @@
-/storage/project/c/C_impl_data_structure/cmake-build-debug/CMakeFiles/C_impl_data_structure.dir
-/storage/project/c/C_impl_data_structure/cmake-build-debug/CMakeFiles/edit_cache.dir
-/storage/project/c/C_impl_data_structure/cmake-build-debug/CMakeFiles/rebuild_cache.dir
