@@ -9,7 +9,6 @@ set(SOURCES
         impl/azvs_queue.c
         impl/azvs_stack.c
         impl/azvs_base.c
-        impl/array/azvs_array.c
 )
 
 add_executable(C_impl_data_structure main.c ${SOURCES})

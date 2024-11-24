@@ -6,7 +6,6 @@
 #include "azvs_queue.h"
 #include "azvs_stack.h"
 
-#include "./array/azvs_array.h"
 #include "./stack/azvs_stack_array.h"
 
 #endif // !AZVS_DATA_STRUCTURE_H

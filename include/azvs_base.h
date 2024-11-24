@@ -16,7 +16,7 @@
 
 // 定义了日志有哪些级别，危险级别依次递增。
 // 若修改了该枚举，请同步修改 get_log_level 函数。
-typedef enum {
+typedef enum log_level {
     LOG_LEVEL_DEBUG,
     LOG_LEVEL_INFO,
     LOG_LEVEL_WARN,
@@ -119,9 +119,9 @@ typedef struct azvs_linear {
 * @brief 初始化线性表，使用 #define 简化
 * @param total 线性表存储元素的总数量
 * @param data_size 单个元素占用的大小 sizeof(type)
-* @param type 存入元素的数据类型 ElementType
+* @param data_type 存入元素的数据类型 ElementType
 */
-APLinear __a_linear_init(size_t total, size_t data_size, char *type);
+APLinear __a_linear_init(size_t total, size_t data_size, char *data_type);
 
 #define a_linear_init(total, type) __a_linear_init(total, sizeof(type), #type)
 
@@ -176,5 +176,17 @@ void a_linear_sort(APLinear linear, int (*operate)(const void *, const void *));
  * @param end 结束输出，可指定为 NULL
  */
 void a_linear_print(APLinear linear, void (*operate)(void *), const char *end);
+
+/**
+* @brief 输出线性表的基本信息
+* @param linear 需要操作的线性表
+*/
+void a_linear_print_info(APLinear linear);
+
+const char *a_linear_get_type(APLinear linear);
+
+size_t a_linear_get_count(APLinear linear);
+
+size_t a_linear_get_total(APLinear linear);
 
 #endif // !AZVS_BASE_H
