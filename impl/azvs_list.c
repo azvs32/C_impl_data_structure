@@ -2,10 +2,8 @@
 #include "../include/azvs_base.h"
 #include <stdio.h>
 
-void a_list_init(AList **list)
-{
-    if (list == NULL)
-    {
+void a_list_init(AList **list) {
+    if (list == NULL) {
         LOG_MSG(LOG_LEVEL_ERROR, "指针为空，无法初始化链表");
         return;
     }
@@ -15,21 +13,17 @@ void a_list_init(AList **list)
     (*list)->size = 0;
 }
 
-void a_list_free(AList **list)
-{
-    if (list == NULL || *list == NULL)
-    {
+void a_list_free(AList **list) {
+    if (list == NULL || *list == NULL) {
         LOG_MSG(LOG_LEVEL_WARN, "指针为空，无需释放链表");
         return;
     }
-    while ((*list)->head != (*list)->rear)
-    {
+    while ((*list)->head != (*list)->rear) {
         AListNode *tmp = (*list)->head;
         (*list)->head = (*list)->head->next;
         DELETE(tmp);
     }
-    if ((*list)->head != NULL)
-    {
+    if ((*list)->head != NULL) {
         DELETE((*list)->head);
         (*list)->head = NULL;
     }
@@ -37,10 +31,8 @@ void a_list_free(AList **list)
     *list = NULL;
 }
 
-int a_list_insert_head(AList *list, void *data)
-{
-    if (list == NULL)
-    {
+int a_list_insert_head(AList *list, void *data) {
+    if (list == NULL) {
         LOG_MSG(LOG_LEVEL_ERROR, "传入的指针为空");
         return -1;
     }
@@ -48,8 +40,7 @@ int a_list_insert_head(AList *list, void *data)
     new->data = data;
     new->pre = NULL;
     new->next = NULL;
-    if (list->head == NULL)
-    {
+    if (list->head == NULL) {
         list->head = new;
         list->rear = new;
         list->size += 1;
@@ -62,10 +53,8 @@ int a_list_insert_head(AList *list, void *data)
     return 0;
 }
 
-int a_list_insert_rear(AList *list, void *data)
-{
-    if (list == NULL)
-    {
+int a_list_insert_rear(AList *list, void *data) {
+    if (list == NULL) {
         LOG_MSG(LOG_LEVEL_ERROR, "传入的指针为空");
         return -1;
     }
@@ -73,8 +62,7 @@ int a_list_insert_rear(AList *list, void *data)
     new->data = data;
     new->pre = NULL;
     new->next = NULL;
-    if (list->rear == NULL)
-    {
+    if (list->rear == NULL) {
         list->head = new;
         list->rear = new;
         list->size += 1;
@@ -145,15 +133,12 @@ int a_list_remove_rear(AList *list, void *data)
     return 0;
 } */
 
-int a_list_print(const AList *list, void (*operation)(void *), char *end)
-{
-    if (list == NULL)
-    {
+int a_list_print(const AList *list, void (*operation)(void *), char *end) {
+    if (list == NULL) {
         return -1;
     }
     AListNode *cur = list->head;
-    while (cur != NULL)
-    {
+    while (cur != NULL) {
         operation(cur->data);
         cur = cur->next;
     }

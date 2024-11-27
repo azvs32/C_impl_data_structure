@@ -4,18 +4,16 @@
 #include <stddef.h>
 
 // 双向链表结构体
-typedef struct azvs_list_node
-{
-    void *data;                  // 元素数据
-    struct azvs_list_node *pre;  // 指向上一个节点
+typedef struct azvs_list_node {
+    void *data; // 元素数据
+    struct azvs_list_node *pre; // 指向上一个节点
     struct azvs_list_node *next; // 指向下一个节点
 } AListNode;
 
-typedef struct
-{
+typedef struct {
     AListNode *head; // 链表的头节点
     AListNode *rear; // 链表的尾节点
-    size_t size;     // 链表节点中元素的数量
+    size_t size; // 链表节点中元素的数量
 } AList;
 
 /////////////////////////

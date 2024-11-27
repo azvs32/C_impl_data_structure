@@ -4,12 +4,11 @@
 #include <stddef.h>
 
 // 双向队列
-typedef struct
-{
-    void **data;  // 存储双向队列元素的数组
-    int front;    // 记录队首位置
-    int rear;     // 记录队尾位置
-    size_t size;  // 当前元素数量
+typedef struct {
+    void **data; // 存储双向队列元素的数组
+    int front; // 记录队首位置
+    int rear; // 记录队尾位置
+    size_t size; // 当前元素数量
     size_t total; // 预期总容量
 } AQueue;
 
