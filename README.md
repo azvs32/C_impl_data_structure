@@ -3,8 +3,11 @@
 + [线性表的使用](./README-linear.md)
 
 ---
+
 # 日志模块
+
 ## 修改日志级别
+
 ```c++
 // 将输出所有高于指定级别的日志，日志级别由低到高排列如下：
 //    LOG_LEVEL_DEBUG
@@ -12,10 +15,16 @@
 //    LOG_LEVEL_WARN
 //    LOG_LEVEL_ERROR  默认
 set_log_level(LogLevel level);
+// 提供给外部输出日志的方法
+LOG_MSG(LogLevel level, char *format, ...)
 ```
+
 ---
+
 # 准备测试数据
+
 ## char
+
 ```c++
 // 用于测试的数据
 char c0 = 'd', c1 = 'b', c2 = 'a', c3 = 'e', c4 = 'c';
@@ -37,6 +46,7 @@ int operate_char_sort(const void *a, const void *b) {
 ```
 
 ## int
+
 ```c++
 // 用于测试的数据
 int a = 1, b = 6, c = 3, d = 8, e = 9;
@@ -58,6 +68,7 @@ int operate_int_sort(const void *a, const void *b) {
 ```
 
 ## double
+
 ```c++
 // 用于测试的数据
 double a = 1.4, b = 4.2, c = 2.4, d = 8.3, e = 3.5;
@@ -81,6 +92,7 @@ int operate_double_sort(const void *a, const void *b) {
 ```
 
 ## string
+
 ```c++
 // 用于测试的数据
 char *my_str[16] = { "linear", "linked", "tree" };
@@ -106,6 +118,7 @@ int operate_string_sort(const void *a, const void *b) {
 ```
 
 ## simple structure
+
 ```c++
 // 定义简单结构体
 typedef struct azvs_simple {
@@ -154,6 +167,7 @@ int operate_simple_sort(const void *a, const void *b) {
 ```
 
 ## complex structure
+
 ```c++
 // 定义复杂结构体
 typedef struct azvs_complex {

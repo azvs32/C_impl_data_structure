@@ -1,6 +1,9 @@
 # 线性表
 
-## 已实现的函数，以双下划线开头的函数不应该被用户调用
+## 实现的函数
+
+> 以双下划线开头的函数不应该被用户调用
+
 ``` c++
 // 初始化线性表，使用 #define 简化
 APLinear __a_linear_init(size_t total, size_t data_size, char *data_type);
@@ -39,7 +42,9 @@ size_t a_linear_get_total(APLinear linear);
 ```
 
 ## char 类型的使用案例
-> [char 类型测试数据及相关函数](./README.md#char) 
+
+> [char 类型测试数据及相关函数](./README.md#char)
+
 ```c++
 void main() {
     // 初始化线性表
@@ -88,7 +93,9 @@ void main() {
 ```
 
 ## string 类型的使用案例
+
 > [string 类型测试数据及相关函数](./README.md#string)
+
 ```c++
 void main() {
     // 初始化线性表
@@ -135,11 +142,11 @@ void main() {
 ```
 
 ## complex structure 类型的使用案例
+
 > [complex structure 类型测试数据及相关函数](./README.md#complex-structure)
-> 
-> AComplex结构体中包含了ASimple结构体类型，因此也需要复制以下内容
-> 
+>
 > [simple structure 类型测试数据及相关函数](./README.md#simple-structure)
+
 ```c++
 void main() {
     init_complex_test_data();
