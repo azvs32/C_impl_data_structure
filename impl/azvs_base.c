@@ -120,6 +120,10 @@ void a_linear_set(APLinear linear, const void *data, size_t index) {
         LOG_MSG(LOG_LEVEL_INFO, "将覆盖线性表中原有的数据。");
         linear->count -= 1; // 后续还会加回来
     }
+    if (data == NULL) {
+        LOG_MSG(LOG_LEVEL_ERROR, "传入的数据为NULL，不允许插入");
+        return;
+    }
     memcpy(linear->data + index * linear->data_size, data, linear->data_size);
     linear->flags[index] = 'Y';
     linear->count += 1;
@@ -186,7 +190,7 @@ void a_linear_print_info(APLinear linear) {
     printf("\tData type : %s\n", linear->data_type);
     printf("\tCount     : %zu\n", linear->count);
     printf("\tTotal     : %zu\n", linear->total);
-    printf("\n\n");
+    printf("\n");
 }
 
 const char *a_linear_get_type(APLinear linear) {
