@@ -91,6 +91,7 @@ void *realloc_with_log(void *ptr, size_t size, const char *file, const char *fun
 
 // 将 malloc、free、realloc 包装成带日志的版本
 #define NEW(type) ((type *)new_with_log(sizeof(type), __FILE__, __FUNCTION__, __LINE__))
+#define NEW_SIZE(size) new_with_log(size, __FILE__, __FUNCTION__, __LINE__)
 #define NEW_ARRAY(type, count) ((type *)new_with_log(sizeof(type) * (count), __FILE__, __FUNCTION__, __LINE__))
 #define REALLOC(ptr, size) remalloc_with_log(ptr, size, __FILE__, __FUNCTION__, __LINE__)
 #define DELETE(ptr) delete_with_log(ptr, __FILE__, __FUNCTION__, __LINE__)
