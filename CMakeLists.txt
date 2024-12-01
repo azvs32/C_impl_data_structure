@@ -10,6 +10,7 @@ set(SOURCES
         impl/base/__base_log.c
         impl/base/__base_memory.c
         impl/azvs_linear.c
+        impl/azvs_linked.c
 )
 
-add_executable(C_impl_data_structure main.c ${SOURCES})
+add_executable(C_impl_data_structure test/main.c ${SOURCES})
