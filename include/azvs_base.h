@@ -56,6 +56,18 @@ void log_message(LogLevel level, const char *file, const char *function, int lin
 //     log_message(level, __FILE__, __FUNCTION__, __LINE__, format, ##__VA_ARGS__); \
 //   } while(0)
 
+#define __CHECK(judgment, level, message, result) \
+  do { \
+    if (judgment) { \
+      LOG_MSG(level, "%s", (message)); \
+      result; \
+    } \
+  } while(0)
+
+#define __CHECK_WARN(judgment, message, result) \
+  __CHECK(judgment, LOG_LEVEL_WARN, message, result)
+#define __CHECK_ERROR(judgment, message, result) \
+  __CHECK(judgment, LOG_LEVEL_ERROR, message, result)
 
 //////////////////////////////////////////////////
 //     内存申请与释放
