@@ -56,6 +56,7 @@ void log_message(LogLevel level, const char *file, const char *function, int lin
 //     log_message(level, __FILE__, __FUNCTION__, __LINE__, format, ##__VA_ARGS__); \
 //   } while(0)
 
+// 设想：message的format功能
 #define __CHECK(judgment, level, message, result) \
   do { \
     if (judgment) { \
@@ -63,7 +64,10 @@ void log_message(LogLevel level, const char *file, const char *function, int lin
       result; \
     } \
   } while(0)
-
+#define __CHECK_DEBUG(judgment, message, result) \
+  __CHECK(judgment, LOG_LEVEL_DEBUG, message, result)
+#define __CHECK_INFO(judgment, message, result) \
+  __CHECK(judgment, LOG_LEVEL_INFO, message, result)
 #define __CHECK_WARN(judgment, message, result) \
   __CHECK(judgment, LOG_LEVEL_WARN, message, result)
 #define __CHECK_ERROR(judgment, message, result) \
