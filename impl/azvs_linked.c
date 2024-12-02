@@ -23,10 +23,7 @@ APLinked __a_linked_init(const size_t data_size, char *data_type) {
 }
 
 void __a_linked_free(APLinked *linked) {
-    if (linked == NULL || *linked == NULL) {
-        LOG_MSG(LOG_LEVEL_INFO, "尝试释放空链表");
-        return;
-    }
+    __CHECK_WARN(linked==NULL || *linked==NULL, "尝试释放空链表", return);
     while ((*linked)->head != NULL) {
         APLinkedNode del = (*linked)->head;
         (*linked)->head = (*linked)->head->next;
@@ -46,10 +43,7 @@ APLinkedNode __a_linked_node_init(void *data, const size_t data_size) {
 }
 
 void a_linked_insert_head(APLinked linked, void *data) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法插入链表元素", return);
     APLinkedNode new_node = __a_linked_node_init(data, linked->data_size);
     if (linked->count == 0) {
         linked->head = new_node;
@@ -64,10 +58,7 @@ void a_linked_insert_head(APLinked linked, void *data) {
 }
 
 void a_linked_insert_tail(APLinked linked, void *data) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法插入链表元素", return);
     APLinkedNode new_node = __a_linked_node_init(data, linked->data_size);
     if (linked->count == 0) {
         linked->head = new_node;
@@ -82,14 +73,8 @@ void a_linked_insert_tail(APLinked linked, void *data) {
 }
 
 void a_linked_remove_head(APLinked linked) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
-    if (linked->count == 0) {
-        LOG_MSG(LOG_LEVEL_WARN, "链表中没有数据，无法删除数据");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法删除链表元素", return);
+    __CHECK_WARN(linked->count == 0, "链表中没有数据，无法删除数据", return);
     if (linked->count == 1) {
         DELETE(linked->head);
         linked->head = NULL;
@@ -105,14 +90,8 @@ void a_linked_remove_head(APLinked linked) {
 }
 
 void a_linked_remove_tail(APLinked linked) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
-    if (linked->count == 0) {
-        LOG_MSG(LOG_LEVEL_WARN, "链表中没有数据，无法删除数据");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法删除链表元素", return);
+    __CHECK_WARN(linked->count == 0, "链表中没有数据，无法删除数据", return);
     if (linked->count == 1) {
         DELETE(linked->head);
         linked->head = NULL;
@@ -128,10 +107,7 @@ void a_linked_remove_tail(APLinked linked) {
 }
 
 void a_linked_print(APLinked linked, void (*operate)(void *), const char *end) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法输出链表元素", return);
     APLinkedNode node = linked->head;
     while (node != NULL) {
         operate(node->data);
@@ -141,10 +117,7 @@ void a_linked_print(APLinked linked, void (*operate)(void *), const char *end) {
 }
 
 void a_linked_print_info(APLinked linked) {
-    if (linked == NULL) {
-        LOG_MSG(LOG_LEVEL_ERROR, "链表为空");
-        return;
-    }
+    __CHECK_ERROR(linked == NULL, "链表为空，无法输出链表基本信息", return);
     printf("\n");
     printf("ALinked Information:\n");
     printf("\tData size : %zu bytes\n", linked->data_size);
