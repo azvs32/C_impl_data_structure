@@ -95,4 +95,8 @@ void a_linked_print(APLinked linked, void (*operate)(void *), const char *end);
 * @param linked 需要操作的链表
 */
 void a_linked_print_info(APLinked linked);
+
+const char *a_linked_get_type(APLinked linked);
+
+size_t a_linked_get_count(APLinked linked);
 #endif //AZVS_LINKED_H

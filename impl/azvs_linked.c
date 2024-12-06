@@ -125,3 +125,13 @@ void a_linked_print_info(APLinked linked) {
     printf("\tCount     : %zu\n", linked->count);
     printf("\n");
 }
+
+const char *a_linked_get_type(APLinked linked) {
+    __CHECK_ERROR(linked == NULL, "链表为空，无法输出链表基本信息", return);
+    return linked->data_type;
+}
+
+size_t a_linked_get_count(APLinked linked) {
+    __CHECK_ERROR(linked == NULL, "链表为空，无法获取 count 值", return -1);
+    return linked->count;
+}
