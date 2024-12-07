@@ -112,4 +112,20 @@ void *realloc_with_log(void *ptr, size_t size, const char *file, const char *fun
 #define REALLOC(ptr, size) remalloc_with_log(ptr, size, __FILE__, __FUNCTION__, __LINE__)
 #define DELETE(ptr) delete_with_log(ptr, __FILE__, __FUNCTION__, __LINE__)
 
+//////////////////////////////////////////////////
+//     函数重载模块
+//////////////////////////////////////////////////
+
+/*
+ * 使用宏 FUNCTION_OVERLOADING 实现伪函数重载
+ * 该宏最多支持同一函数重载四次，如果需要更多则可增加_x的数量
+ */
+#define FUNCTION_OVERLOADING(_1, _2, _3, _4, NAME, ...) NAME
+/*
+ * 使用案例：即使函数只需要重载两次，也需要补充后续的函数名参数，函数名参数可随意
+ * #define FUNC(...) FUNCTION_OVERLOADING(__VA_ARGS__, FUNC4, FUNC3, FUNC2, FUNC1)(__VA_ARGS__)
+ * #define FUNC1(x) printf("%d\n", x)
+ * #define FUNC2(x, y) printf("%d %d\n", x, y)
+ */
+
 #endif // !AZVS_BASE_H
