@@ -3,7 +3,6 @@
 
 #include "./azvs_linear.h"
 #include "./azvs_linked.h"
-#include <stddef.h>
 
 typedef enum azvs_stack_base_struct {
     // 底层使用线性表实现
@@ -60,12 +59,7 @@ void a_stack_push(APStack stack, void *data);
 */
 void *ap_stack_pop(APStack stack);
 
-// #define a_stack_pop(stack, type) (*((type*)ap_stack_pop(stack)))
-// #define a_stack_pop(stack) \
-//     ({ \
-//         const char *data_type = (stack)->data.linear->data_type; \
-//         (typeof(*data_type) *)ap_stack_pop(stack); \
-//     })
+#define a_stack_pop(stack, type) (*(type*)ap_stack_pop(stack))
 
 /**
 * @brief 查看栈顶元素
@@ -73,42 +67,20 @@ void *ap_stack_pop(APStack stack);
 */
 void *ap_stack_peek(APStack stack);
 
-///**
-// * 返回栈顶元素，该操作并不会使该元素出栈
-// * @param stack 指定栈地址
-// * @param e 保存栈定元素的地址
-// * @return 成功则返回 0
-// */
-//int a_stack_value(AStack *stack, void *e);
-//
-///**
-// * 检查栈是否为空
-// * @param stack 指定栈地址
-// * @return 如果栈内没有存储，则返回真
-// */
-//int a_stack_is_empty(AStack *stack);
-//
-///**
-// * 打印栈中的所有元素，先出栈的元素排在后面
-// * @param stack 指定栈地址
-// * @param operation 指定输出规则
-// * @param end 自定义结束符号，若为NULL，则不定义。通常可以指定为"\n"
-// * @return 操作成功返回 0
-// */
-//int a_stack_print(AStack *stack, void (*operation)(void *), char *end);
-//
-///**
-// * 获取栈的大小
-// * @param stack 指定栈地址
-// * @return 获取栈当前已经存入数据的大小
-// */
-//size_t a_stack_get_size(AStack *stack);
-//
-///**
-// * 获取栈的最大容量
-// * @param stack 指定栈地址
-// * @return 获取栈当前总容量
-// */
-//size_t a_stack_get_total(AStack *stack);
+#define a_stack_peek(stack, type) (*(type*)ap_stack_peek(stack))
+
+/**
+ * @brief 输出栈中的每个元素，栈顶元素在最后
+ * @param stack 需要操作的栈
+ * @param operate 回调函数，指定输出规则
+ * @param end 结束输出，可指定为 NULL
+ */
+void a_stack_print(APStack stack, void (*operate)(void *), const char *end);
+
+/**
+* @brief 输出栈的基本信息
+* @param stack 需要操作的栈
+*/
+void a_stack_print_info(APStack stack);
 
 #endif // !AZVS_STACK_H
