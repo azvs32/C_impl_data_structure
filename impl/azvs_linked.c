@@ -27,7 +27,8 @@ void __a_linked_free(APLinked *linked) {
     while ((*linked)->head != NULL) {
         APLinkedNode del = (*linked)->head;
         (*linked)->head = (*linked)->head->next;
-        DELETE(del);
+        // DELETE(del);
+        __a_linked_node_free(&del);
     }
     DELETE(*linked);
     *linked = NULL;
@@ -40,6 +41,13 @@ APLinkedNode __a_linked_node_init(void *data, const size_t data_size) {
     new_node->prev = NULL;
     new_node->next = NULL;
     return new_node;
+}
+
+void __a_linked_node_free(APLinkedNode *node) {
+    __CHECK_WARN(node == NULL || *node == NULL, "尝试释放空链表节点", return);
+    DELETE((*node)->data);
+    DELETE(*node);
+    *node = NULL;
 }
 
 void a_linked_insert_head(APLinked linked, void *data) {
@@ -76,7 +84,8 @@ void a_linked_remove_head(APLinked linked) {
     __CHECK_ERROR(linked == NULL, "链表为空，无法删除链表元素", return);
     __CHECK_WARN(linked->count == 0, "链表中没有数据，无法删除数据", return);
     if (linked->count == 1) {
-        DELETE(linked->head);
+        //DELETE(linked->head);
+        __a_linked_node_free(&(linked->head));
         linked->head = NULL;
         linked->tail = NULL;
         linked->count -= 1;
@@ -85,7 +94,8 @@ void a_linked_remove_head(APLinked linked) {
     APLinkedNode del = linked->head;
     linked->head = del->next;
     linked->head->prev = NULL;
-    DELETE(del);
+    // DELETE(del);
+    __a_linked_node_free(&del);
     linked->count -= 1;
 }
 
@@ -93,7 +103,8 @@ void a_linked_remove_tail(APLinked linked) {
     __CHECK_ERROR(linked == NULL, "链表为空，无法删除链表元素", return);
     __CHECK_WARN(linked->count == 0, "链表中没有数据，无法删除数据", return);
     if (linked->count == 1) {
-        DELETE(linked->head);
+        // DELETE(linked->head);
+        __a_linked_node_free(&(linked->head));
         linked->head = NULL;
         linked->tail = NULL;
         linked->count -= 1;
@@ -102,7 +113,8 @@ void a_linked_remove_tail(APLinked linked) {
     APLinkedNode del = linked->tail;
     linked->tail = del->prev;
     linked->tail->next = NULL;
-    DELETE(del);
+    // DELETE(del);
+    __a_linked_node_free(&del);
     linked->count -= 1;
 }
 

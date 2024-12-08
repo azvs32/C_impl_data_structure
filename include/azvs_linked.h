@@ -57,6 +57,12 @@ void __a_linked_free(APLinked *linked);
 APLinkedNode __a_linked_node_init(void *data, size_t data_size);
 
 /**
+* @brief 释放链表节点
+* @param node 需要释放的链表节点
+*/
+void __a_linked_node_free(APLinkedNode *node);
+
+/**
 * @brief 在链表头部插入数据
 * @param linked 需要操作的链表
 * @param data 需要插入的数据
